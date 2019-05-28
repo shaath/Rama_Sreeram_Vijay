@@ -1,0 +1,77 @@
+package testNG;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+
+public class TestNGMaster 
+{
+	public WebDriver driver;
+	public String expval,actval;
+	
+	public FileInputStream fi;
+	public Properties pr;
+	public static String url="http://orangehrm.qedgetech.com";
+	public static String u="Admin",p="Qedge123!@#";
+	public static String FN="Snigdha",LN="S",Eid="STA12345";
+	public static String EName=FN+" "+LN,Uname=FN+LN+"1234567890",pswd=FN+LN+"@1234567890",Cpswd=FN+LN+"@1234567890";
+	@BeforeSuite
+	public void org_Launch() throws IOException
+	{
+		expval="LOGIN";
+		driver=new FirefoxDriver();
+		driver.get(url);
+		driver.manage().window().maximize();
+		
+		fi=new FileInputStream("F:\\Rama_Ram_Vijay_Recordings\\Workspace\\SeleniumProject\\src\\properties\\OrgHRM_OR.properties");
+		pr=new Properties();
+		pr.load(fi);
+		
+		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		actval=driver.findElement(By.xpath(pr.getProperty("Login"))).getAttribute("value");
+		
+		Assert.assertEquals(actval, expval,"Launch Failed");
+	}
+	
+	@BeforeTest
+	public void org_Login() throws InterruptedException
+	{
+		expval="welcome";
+		driver.findElement(By.xpath(pr.getProperty("UserName"))).sendKeys(u);
+		driver.findElement(By.xpath(pr.getProperty("Password"))).sendKeys(p);
+		driver.findElement(By.xpath(pr.getProperty("Login"))).click();
+		Thread.sleep(5000);
+		actval=driver.findElement(By.partialLinkText("Welcome")).getAttribute("id");
+		Assert.assertEquals(actval, expval,"Login Failed");
+	}
+	
+	@AfterTest
+	public void org_Logout()
+	{
+		expval="LOGIN";
+		driver.findElement(By.partialLinkText("Welcome")).click();
+		driver.findElement(By.linkText("Logout")).click();
+		actval=driver.findElement(By.xpath("//input[@value='LOGIN']")).getAttribute("value");
+		
+		Assert.assertEquals(actval, expval,"Logout Failed");
+	}
+	
+	@AfterSuite
+	public void org_Close()
+	{
+		driver.close();
+	}
+
+}

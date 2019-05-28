@@ -1,0 +1,50 @@
+package stepDefination;
+
+import cucumber.api.java.en.Given;
+
+public class Login_Logout 
+{
+
+@Given("^launch the browser and navigate to url$")
+public void launch_the_browser_and_navigate_to_url() throws Throwable
+{
+    
+}
+
+@When("^user enter username and password$")
+public void user_enter_username_and_password() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    throw new PendingException();
+}
+
+@When("^click on login$")
+public void click_on_login() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    throw new PendingException();
+}
+
+@Then("^redirected to admin page and should display welcome link$")
+public void redirected_to_admin_page_and_should_display_welcome_link() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    throw new PendingException();
+}
+
+@When("^User clicks on welcome link$")
+public void user_clicks_on_welcome_link() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    throw new PendingException();
+}
+
+@When("^also clicks on logout$")
+public void also_clicks_on_logout() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    throw new PendingException();
+}
+
+@Then("^oraghrm login page displayed$")
+public void oraghrm_login_page_displayed() throws Throwable {
+    // Write code here that turns the phrase above into concrete actions
+    throw new PendingException();
+}
+
+}

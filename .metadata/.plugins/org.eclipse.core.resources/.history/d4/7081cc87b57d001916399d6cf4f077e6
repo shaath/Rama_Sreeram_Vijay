@@ -1,0 +1,55 @@
+package driverScripts;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import methods.OrgHRMLib;
+
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+public class Keyword {
+
+	public static void main(String[] args) throws IOException 
+	{
+		OrgHRMLib om=new OrgHRMLib();
+		String xlpath="F:\\Rama_Ram_Vijay_Recordings\\Workspace\\SeleniumProject\\src\\testdata\\Keyword.xlsx";
+
+		FileInputStream fi=new FileInputStream(xlpath);
+		
+		XSSFWorkbook wb=new XSSFWorkbook(fi);
+		
+		XSSFSheet TC_Sht=wb.getSheet("Testcase");
+		XSSFSheet TS_Sht=wb.getSheet("Teststeps");
+		XSSFSheet TD_Sht=wb.getSheet("TestData");
+		
+		int TC_RC=TC_Sht.getLastRowNum();
+		int TS_RC=TS_Sht.getLastRowNum();
+		
+		for (int i = 1; i <= TC_RC; i++)
+		{
+			String Exe=TC_Sht.getRow(i).getCell(2).getStringCellValue();
+			
+			if (Exe.equalsIgnoreCase("Y"))
+			{
+				String TC_Sht_TCID=TC_Sht.getRow(i).getCell(0).getStringCellValue();
+				
+				for (int j = 1; j <= TS_RC; j++)
+				{
+					String TS_Sht_TCID=TS_Sht.getRow(j).getCell(0).getStringCellValue();
+					if (TC_Sht_TCID.equalsIgnoreCase(TS_Sht_TCID))
+					{
+						String Key=TS_Sht.getRow(j).getCell(3).getStringCellValue();
+						
+					}
+				}
+			}
+			else
+			{
+				TC_Sht.getRow(i).createCell(3).setCellValue("BLOCKED");
+			}
+		}
+	}
+
+}

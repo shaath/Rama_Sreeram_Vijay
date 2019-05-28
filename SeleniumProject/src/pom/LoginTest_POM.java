@@ -1,0 +1,26 @@
+package pom;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
+
+public class LoginTest_POM extends Constants_POM
+{
+	@Test
+	public void login() throws InterruptedException
+	{
+		driver.get(lp.url);
+		driver.manage().window().maximize();
+		
+		lp.org_Login(lp.u, lp.p);
+		
+		Thread.sleep(3000);
+		
+		mi.welcomeclick();
+		mi.logoutclick();
+		
+		driver.close();
+	}
+
+}

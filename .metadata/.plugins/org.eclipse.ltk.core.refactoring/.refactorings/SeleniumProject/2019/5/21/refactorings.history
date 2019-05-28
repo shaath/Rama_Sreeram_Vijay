@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 4 elements from project &apos;SeleniumProject&apos;&#x0D;&#x0A;- Original project: &apos;SeleniumProject&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     testNG.BasicAnnotationsEg.java&#x0D;&#x0A;     testNG.EmpReg_TestNG.java&#x0D;&#x0A;     testNG.TestNGMaster.java&#x0D;&#x0A;     testNG.UserReg_TestNG12.java" description="Delete elements" element1="/src&lt;testNG{EmpReg_TestNG.java" element2="/src&lt;testNG{UserReg_TestNG12.java" element3="/src&lt;testNG{BasicAnnotationsEg.java" element4="/src&lt;testNG{TestNGMaster.java" elements="4" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1558748852019" subPackages="false" version="1.0"/>
+</session>
